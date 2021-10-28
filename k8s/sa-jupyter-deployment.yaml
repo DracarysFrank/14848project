@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-jupyter
+  labels:
+    app: sa-jupyter
+spec:
+  selector:
+     matchLabels:
+       app: sa-jupyter
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sa-jupyter
+    spec:
+      containers:
+        - image: jupyter/base-notebook
+         #us.gcr.io/termproject-330002/jupyter:v001
+          imagePullPolicy: Always
+          name: sa-jupyter
+          ports:
+            - containerPort: 8888

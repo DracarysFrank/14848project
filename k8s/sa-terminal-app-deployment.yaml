@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-terminal-app
+  labels:
+    app: sa-terminal-app
+spec:
+  selector:
+    matchLabels:
+      app: sa-terminal-app
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sa-terminal-app
+    spec:
+      containers:
+      - image: zyh6158/terminal
+        #us.gcr.io/termproject-330002/terminal_app:v008
+        imagePullPolicy: Always
+        name: sa-terminal-app
+        ports:
+          - containerPort: 8080

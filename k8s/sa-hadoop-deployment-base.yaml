@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-hadoop-base
+  labels:
+    app: sa-hadoop-base
+spec:
+  selector:
+     matchLabels:
+       app: sa-hadoop-base
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sa-hadoop-base
+    spec:
+      containers:
+          - image: zyh6158/base-hadoop-docker
+            imagePullPolicy: Always
+            name: sa-hadoop-base
+            ports:
+              - containerPort: 50070
+            securityContext:
+              privileged: true

@@ -1,0 +1,5 @@
+terminal: https://hub.docker.com/r/zyh6158/terminal
+Hadoop: https://hub.docker.com/r/zyh6158/base-hadoop-docker & https://hub.docker.com/r/zyh6158/base-hadoop
+Sonarqube & sonar-scanner: https://hub.docker.com/r/zyh6158/sonar
+Spark: https://hub.docker.com/r/bitnami/spark/
+Jupyter: https://hub.docker.com/r/jupyter/base-notebook

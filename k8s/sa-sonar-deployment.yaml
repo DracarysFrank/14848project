@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa-sonar
+  labels:
+    app: sa-sonar
+spec:
+  selector:
+     matchLabels:
+       app: sa-sonar
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: sa-sonar
+    spec:
+      containers:
+        - image: zyh6158/sonar
+          imagePullPolicy: Always
+          name: sa-sonar
+          ports:
+            - containerPort: 9000

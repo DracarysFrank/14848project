@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sa-sonar
+spec:
+  type: LoadBalancer
+  loadBalancerIP: 35.227.16.143
+  ports:
+    - port: 9000
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: sa-sonar
